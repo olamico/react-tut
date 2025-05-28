@@ -1,23 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Bloglist from './Bloglist';
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState ([
-        { title: 'Luxury perfumes and scents', body: 'lorem ipsum...', author: 'Olusola', id: 1 },
-        { title: 'spend little and smell classy!', body: 'lorem ipsum...', author: 'Michael', id: 2 },
-        { title: 'Major points of perfume', body: 'lorem ipsum...', author: 'Olaleye', id: 3 }
-      ]);
+    const [blogs, setBlogs] = useState (null);
     
-    
+    useEffect (() => {
+          fetch ('http://localhost:3000/blogs')
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            console.log(data);
+          })
+    }, []);
 
     return (
         <div className="Home">
-            {blogs.map(blog => (
-         <div className="blog-preview" key={blog.id} >
-           <h2>{ blog.title }</h2>
-           <p>Written by { blog.author }</p>
-         </div>
-            ))}
+            {/* <Bloglist blogs={blogs} title="All blogs"/>
+            <Bloglist blogs={blogs.filter((blogs) => blogs.author === 'Olaleye')} title="Olaleye's blog"/> */}
         </div>
      );
 }
