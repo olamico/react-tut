@@ -1,3 +1,12 @@
+.background-image {
+  background-size: cover;
+  background-size: 800%;
+  background-size: contain;
+  background-position: center;
+  height: 100vh;
+  width: 500vw;
+}
+
 .sign-up-form {
   width: 300px;
   margin: 20px auto;
@@ -125,3 +134,5 @@
   color: #0f5132;
   border: 1px solid #badbcc;
 }
+ /* create*/
+ 

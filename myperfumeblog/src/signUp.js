@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -7,6 +7,8 @@ const SignUp = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,12 +30,13 @@ const SignUp = () => {
 
             if (!response.ok) {
                 const data = await response.json();
-                setError(data.message || "Sign-up failed.");
+                setError(data.message || "Sign-up failed. Please try again.");
                 setSuccess(null);
 
-                Navigate("/verifyCode");
+                
             } else {
-                setSuccess("Sign-up successful! Please check your email for verification.");
+                navigate("/verifyCode");
+                setSuccess("Sign-up successful! Please verify your email.");
                 setError(null);
                 setEmail("");
                 setPassword("");
